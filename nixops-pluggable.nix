@@ -86,6 +86,7 @@ let
                 format = "pyproject";
                 buildInputs = old.buildInputs ++ [
                   self.poetry
+                  self.setuptools
                 ];
                 meta = old.meta // {
                   homepage = https://github.com/NixOS/nixops;

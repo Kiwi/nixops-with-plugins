@@ -9,10 +9,20 @@ self: super: {
     }
   );
 
-  libvirt-python = super.libvirt-python.overridePythonAttrs({ nativeBuildInputs ? [], ... }: {
+  nixops = super.nixops.overridePythonAttrs ({ nativeBuildInputs ? [ ], ... }: {
     format = "pyproject";
-    nativeBuildInputs = nativeBuildInputs ++ [ pkgs.pkgconfig ];
-    propagatedBuildInputs = [ pkgs.libvirt ];
+    nativeBuildInputs = nativeBuildInputs ++ [ self.poetry ];
   });
+  lxml = super.lxml.overridePythonAttrs (
+    old: {
+      propagatedBuildInputs = old.propagatedBuildInputs ++ [
+      ];
+    }
+  );
+#  libvirt-python = super.libvirt-python.overridePythonAttrs({ nativeBuildInputs ? [], ... }: {
+#    format = "pyproject";
+#    nativeBuildInputs = nativeBuildInputs ++ [ pkgs.pkgconfig ];
+#    propagatedBuildInputs = [ pkgs.libvirt ];
+#  });
 
 }
