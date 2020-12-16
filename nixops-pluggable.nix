@@ -19,6 +19,7 @@ in
       ps.nixops-aws
       ps.nixops-virtd
       ps.nixopsvbox
+      ps.nixops-digitalocean
     ]);
 
     devShell = pkgs.mkShell {
